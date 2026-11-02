@@ -1,0 +1,20 @@
+{{ product.name }} is now {{ price | money(currency) }} at {{ link.shop }}.
+{% if previous is not none %}
+Before: {{ previous | money(currency) }}{% if drop_pct %} (-{{ '%.1f' | format(drop_pct) }} %){% endif %}
+
+{% endif %}
+Your target: {{ target | money(currency) }}
+{% if all_time_low %}
+This is the lowest price seen so far.
+{% endif %}
+
+Go to the offer: {{ link.url }}
+Open in Cost Tracker: {{ product_url }}
+
+All shops:
+{% for item in links %}
+- {{ item.shop }}: {{ item.last_price | money(item.currency) }}
+{% endfor %}
+
+--
+Cost Tracker · {{ app_url }}
